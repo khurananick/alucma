@@ -11,7 +11,7 @@ To initiate the client, run commands as follows.
 
 If you already have an access token:
 ````ruby
-@client = ALUCMA.init( :access_token => { YOUR_ACCESS_TOKEN })
+@client = ALUCMA.init( :access_token => "{YOUR_ACCESS_TOKEN}")
 ````
 If you want a new token issued each time:
 ````ruby
