@@ -14,7 +14,6 @@ If you already have an access token:
 @client = ALUCMA.init( :access_token => { YOUR_ACCESS_TOKEN })
 ````
 If you want a new token issued each time:
-
 ````ruby
 @client = ALUCMA.init(
   :client_id=>"{YOUR_CLIENT_ID}",
