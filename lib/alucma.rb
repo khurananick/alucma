@@ -9,6 +9,10 @@ class ALUCMA
       return { :error => "Invalid input. Input must be a hash." }
     end
 
+    if hash[:access_token]
+      return Client.new(hash)
+    end
+
     if !hash[:client_id] || !hash[:client_secret]
       return { :error => "Missing parameters. Must Client ID and Client Secret" }
     end

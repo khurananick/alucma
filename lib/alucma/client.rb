@@ -2,8 +2,9 @@ class Client
   attr_accessor :headers
 
   def initialize(args={})
+    access_token = args["access_token"] || args[:access_token]
     self.headers = {
-    "Authorization" => "Bearer #{args["access_token"]}",
+    "Authorization" => "Bearer #{access_token}",
     "Content-Type" => "application/json"
     }
   end

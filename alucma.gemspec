@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'alucma'
-  s.version     = '1.0.4'
+  s.version     = '1.0.5'
   s.date        = '2015-11-10'
   s.summary     = "Wrapper for alcatel-lucent call management APIs"
   s.description = "Wrapper for alcatel-lucent call management APIs"
