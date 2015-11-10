@@ -1,5 +1,3 @@
-require 'net/http'
-
 class Http
   def self.post(url, headers, payload)
     begin

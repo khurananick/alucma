@@ -3,20 +3,20 @@ class Client
 
   def initialize(args={})
     self.headers = {
-    "Authorization" => "Bearer #{args[:access_token]}",
+    "Authorization" => "Bearer #{args["access_token"]}",
     "Content-Type" => "application/json"
     }
   end
 
   def make_call(phonenumber,displayname)
-    return Helper.post("http://api.foundry.att.net:9001/a1/nca/callcontrol/call/#{phonenumber}", self.headers, {
+    return Http.post("http://api.foundry.att.net:9001/a1/nca/callcontrol/call/#{phonenumber}", self.headers, {
       "p1_displayName" => "#{displayname}",
       "announcement" => "http://www.freshsupercool.com/wp-content/uploads/2015/11/Silent.wav"
     }.to_json)
   end
 
   def subscribe_to_call(session_id,callback_url)
-    return Helper.post("http://api.foundry.att.net:9001/a1/nca/interaction/subscribe", self.headers, {
+    return Http.post("http://api.foundry.att.net:9001/a1/nca/interaction/subscribe", self.headers, {
       "sessionId": session_id,
       "notifyURL": callback_url,
       "type": "play"
@@ -24,7 +24,7 @@ class Client
   end
 
   def play_recording_to_call_participant(session_id,party_phonenumber,recording)
-    return Helper.post("http://api.foundry.att.net:9001/a1/nca/interaction/play", self.headers, {
+    return Http.post("http://api.foundry.att.net:9001/a1/nca/interaction/play", self.headers, {
       "sessionId":session_id,
       "callPartyL": [party_phonenumber],
       "playURL": recording,

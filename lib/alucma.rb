@@ -1,3 +1,5 @@
+require 'net/http'
+require 'json'
 require 'alucma/http'
 require 'alucma/client'
 
@@ -16,10 +18,11 @@ class ALUCMA
     payload = "client_id=#{hash[:client_id]}&client_secret=#{hash[:client_secret]}"
 
     resp = Http.post(url,headers,payload)
-
-    if resp["status"] == "approved"
-      resp = JSON.parse(resp)
-      return Client.new(resp)
+    auth = JSON.parse(resp) || {}
+    if auth["status"] == "approved"
+      return Client.new(auth)
+    else
+      return { :error => "OAuth not approved." }
     end
   end
 end
