@@ -22,13 +22,12 @@ If you want a new token issued each time:
   :client_secret=>"{YOUR_CLIENT_SECRET}"
 )
 ````
-
 Then you can run commands as follows.
 
 #### Subscribing to a phone number
 In order to listen to call events related to a phone number, you have to first subscribe to it.
 ````ruby
-@client.subscribe_to_number("+14047241448","Called",'["CalledNumber","NoAnswer"]',"http://77c3e98d.ngrok.io")
+@client.subscribe_to_number("+14047241448","Called",'["CalledNumber","NoAnswer"]',"{callback_url}")
 ````
 
 #### Making a call
@@ -52,4 +51,8 @@ You can play an audio file and ask the user to press a number as response.
 @client.play_recording_to_call_participant(@call["sessionId"],"4047241448","{recording_url}")
 ````
 
+Quick notes:
+The way a number is provided to the call is inconsistent. Sometimes it requires +1, other times it doesn't.
+
+#### More
 To look at the client code directly, go to lib/alucma/client.rb in the source.
