@@ -28,7 +28,7 @@ Then you can run commands as follows.
 #### Subscribing to a phone number
 In order to listen to call events related to a phone number, you have to first subscribe to it.
 ````ruby
-client.subscribe_to_number("+14047241448","Called",'["CalledNumber","NoAnswer"]',"http://77c3e98d.ngrok.io")
+@client.subscribe_to_number("+14047241448","Called",'["CalledNumber","NoAnswer"]',"http://77c3e98d.ngrok.io")
 ````
 
 #### Making a call
@@ -48,8 +48,8 @@ The API calls the first number first. If the first number answers, it calls the 
 You can play an audio file and ask the user to press a number as response.
 ````ruby
 @call = @client.make_call("4047241427","Big Poppa")
-@client.subscribe_to_call(@call.session_id,"{callback_url}")
-@client.play_recording_to_call_participant(@call.session_id,"4047241427","{recording_url}")
+@client.subscribe_to_call(@call["sessionId"], "{callback_url}")
+@client.play_recording_to_call_participant(@call["sessionId"],"4047241448","{recording_url}")
 ````
 
 To look at the client code directly, go to lib/alucma/client.rb in the source.

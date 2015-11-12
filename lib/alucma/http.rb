@@ -1,5 +1,5 @@
 class Http
-  def self.post(url, headers, payload)
+  def self.post(url, headers, payload=nil)
     begin
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host,uri.port)
@@ -15,7 +15,12 @@ class Http
       end
 
       res = http.request(req)
-      return res.body
+
+      if res.body
+        return JSON.parse res.body
+      else
+        return { :error => true, :response => res.body }
+      end
     rescue => e
       puts e.to_s
       return false

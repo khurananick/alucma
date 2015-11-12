@@ -9,11 +9,19 @@ class Client
     }
   end
 
-  def make_call(phonenumber,displayname)
-    return Http.post("http://api.foundry.att.net:9001/a1/nca/callcontrol/call/#{phonenumber}", self.headers, {
-      "p1_displayName" => "#{displayname}",
-      "announcement" => "http://www.freshsupercool.com/wp-content/uploads/2015/11/Silent.wav"
+  def subscribe_to_number(phonenumber,direction,criteria,callback_url)
+    return Http.post("http://api.foundry.att.net:9001/a1/nca/subscription/callEvent/#{phonenumber}", self.headers, {
+      "addressDirection" => direction,
+      "criteria" => criteria,
+      "url" => callback_url
     }.to_json)
+  end
+
+  def make_call(phonenumber,displayname,recording_url=nil)
+    params = {}
+    params["p1_displayName"] = displayname
+    params["announcement"] = recording_url if recording_url
+    return Http.post("http://api.foundry.att.net:9001/a1/nca/callcontrol/call/#{phonenumber}", self.headers, params.to_json)
   end
 
   def subscribe_to_call(session_id,callback_url)
